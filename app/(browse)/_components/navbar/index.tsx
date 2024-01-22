@@ -1,25 +1,28 @@
-import React from "react";
-import Logo from "./logo";
+import { Actions } from "./actions";
+import { Logo } from "./logo";
+import { Search } from "./search";
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <nav
       className="
-        fixed
+      fixed
         top-0
-        flex h-20
+        z-[49]
+        flex 
+        h-20
         w-full
         items-center
         justify-between
-        bg-[##242731]
+        bg-[#242731]
         px-2
         shadow-sm
         lg:px-4
       "
     >
       <Logo />
+      <Search />
+      <Actions />
     </nav>
   );
 };
-
-export default Navbar;

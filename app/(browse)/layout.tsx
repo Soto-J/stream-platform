@@ -1,12 +1,26 @@
-import Navbar from "./_components/navbar";
+import { Suspense } from "react";
 
-const BrowserLayout = ({ Children }: { Children: React.ReactNode }) => {
+import { Container } from "./_components/container";
+import { Navbar } from "./_components/navbar";
+import { Sidebar, SidebarSkeleton } from "./_components/sidebar";
+
+type BrowserLayoutProps = {
+  children: React.ReactNode;
+};
+
+const BrowseLayout = ({ children }: BrowserLayoutProps) => {
   return (
     <>
       <Navbar />
-      <div className="flex h-full pt-20">{Children}</div>
+      <div className="flex h-full pt-20">
+        <Suspense fallback={<SidebarSkeleton />}>
+          <Sidebar />
+        </Suspense>
+
+        <Container>{children}</Container>
+      </div>
     </>
   );
 };
 
-export default BrowserLayout;
+export default BrowseLayout;
