@@ -13,20 +13,16 @@ export const getRecommendedService = async () => {
     userId = null;
   }
 
-  let users = [];
-
-  if (userId) {
-    users = await db.user.findMany({
-      orderBy: { createdAt: "desc" },
-      where: {
-        NOT: { id: userId },
-      },
-    });
-  } else {
-    users = await db.user.findMany({
-      orderBy: { createdAt: "desc" },
-    });
-  }
+  const users = userId
+    ? await db.user.findMany({
+        orderBy: { createdAt: "desc" },
+        where: {
+          NOT: { id: userId },
+        },
+      })
+    : await db.user.findMany({
+        orderBy: { createdAt: "desc" },
+      });
 
   return users;
 };
