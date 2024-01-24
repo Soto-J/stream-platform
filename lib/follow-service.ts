@@ -132,7 +132,7 @@ export const unFollowUser = async (id: string) => {
     }
 
     const unfollowedUser = await db.follow.delete({
-      where: { followerId: self.id, followingId: otherUser.id },
+      where: { id: exisitingFollow.id },
       include: { follower: true, following: true },
     });
 
