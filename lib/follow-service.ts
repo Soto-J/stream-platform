@@ -1,6 +1,7 @@
-import { db } from "./db";
-import { getSelf } from "./auth-service";
 import { Prisma } from "@prisma/client";
+import { db } from "./db";
+
+import { getSelf } from "./auth-service";
 
 const followsUser = Prisma.validator<Prisma.FollowDefaultArgs>()({
   include: { following: true },
