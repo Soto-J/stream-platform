@@ -14,7 +14,6 @@ export const getRecommended = async () => {
     userId = null;
   }
 
-  console.log("userId", userId);
   const users = userId
     ? await db.user.findMany({
         orderBy: { createdAt: "desc" },
@@ -27,6 +26,13 @@ export const getRecommended = async () => {
               NOT: {
                 following: {
                   some: { followerId: userId },
+                },
+              },
+            },
+            {
+              NOT: {
+                blocking: {
+                  some: { blockedId: userId },
                 },
               },
             },

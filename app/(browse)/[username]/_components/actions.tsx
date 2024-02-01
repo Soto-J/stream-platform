@@ -8,10 +8,11 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { onBlockUser, onUnBlockUser } from "@/actions/block";
+import { isBlockedByUser } from "@/lib/block-service";
 
 type ActionsProps = {
-  isFollowing: boolean;
   userId: string;
+  isFollowing: boolean;
 };
 
 export const Actions = ({ isFollowing, userId }: ActionsProps) => {
@@ -62,7 +63,6 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
 
   // const blockLabel = isBlock ? "Unblock" : "Block";
   const onBlock = isFollowing ? handleUnblock : handleBlock;
-
   return (
     <>
       <Button onClick={onClick} variant="primary" disabled={isPending}>

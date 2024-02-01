@@ -9,7 +9,7 @@ import { Following, FollowingSkeleton } from "./following";
 export const Sidebar = async () => {
   const recommended = await getRecommended();
   const following = await getFollowedUsers();
-
+  
   return (
     <Wrapper>
       <Toggle />
