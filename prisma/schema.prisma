@@ -44,8 +44,8 @@ model Follow {
 
 model Block {
   id        String @id @default(uuid())
-  blockedId String
   blockerId String
+  blockedId String
 
   blocked User @relation(name: "BlockedBy", fields: [blockedId], references: [id], onDelete: Cascade)
 

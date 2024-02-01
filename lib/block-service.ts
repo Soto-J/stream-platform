@@ -31,8 +31,8 @@ export const isBlockedByUser = async (id: string) => {
     const isBlocked = await db.block.findUnique({
       where: {
         blockerId_blockedId: {
-          blockedId: self.id,
           blockerId: otherUser.id,
+          blockedId: self.id,
         },
       },
     });
@@ -65,8 +65,8 @@ export const blockUser = async (id: string) => {
   const existingBlock = await db.block.findUnique({
     where: {
       blockerId_blockedId: {
-        blockedId: self.id,
-        blockerId: otherUser.id,
+        blockerId: self.id,
+        blockedId: otherUser.id,
       },
     },
   });
@@ -109,12 +109,13 @@ export const unBlockUser = async (id: string) => {
   const existingBlock = await db.block.findUnique({
     where: {
       blockerId_blockedId: {
-        blockedId: self.id,
-        blockerId: otherUser.id,
+        blockerId: self.id,
+        blockedId: otherUser.id,
       },
     },
   });
 
+  console.log(existingBlock, "existingBlock");
   if (!existingBlock) {
     throw new Error("You are not blocking this user!");
   }
