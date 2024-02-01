@@ -1,6 +1,8 @@
-import { getSelfByUsername } from "@/lib/auth-service";
 import { redirect } from "next/navigation";
+import { getSelfByUsername } from "@/lib/auth-service";
+
 import { Navbar } from "./_components/navbar";
+import { Sidebar } from "./_components/sidebar";
 
 type CreatorLayoutProps = {
   children: React.ReactNode;
@@ -22,7 +24,10 @@ export default async function CreatorLayout({
   return (
     <>
       <Navbar />
-      <div className="flex h-full pt-20">{children}</div>
+      <div className="flex h-full pt-20">
+        <Sidebar />
+        {children}
+      </div>
     </>
   );
 }

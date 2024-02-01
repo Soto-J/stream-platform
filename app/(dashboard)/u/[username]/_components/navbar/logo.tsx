@@ -1,8 +1,9 @@
+import Link from "next/link";
 import Image from "next/image";
+
 import { Poppins } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -12,26 +13,8 @@ const font = Poppins({
 export const Logo = () => {
   return (
     <Link href="/">
-      <div
-        className="
-          flex
-          items-center
-          gap-x-4
-          transition
-          hover:opacity-75
-        "
-      >
-        <div
-          className="
-          lg-shrink
-          mr-8
-          shrink-0
-          rounded-full
-          bg-white
-          p-1
-          lg:mr-0
-        "
-        >
+      <div className="flex items-center gap-x-4 transition hover:opacity-75">
+        <div className="lg-shrink mr-8 shrink-0 rounded-full bg-white p-1 lg:mr-0">
           <Image src="/spooky.svg" alt="logo" height={32} width={32} />
         </div>
 
