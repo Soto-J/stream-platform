@@ -11,9 +11,9 @@ datasource db {
 
 model User {
   id             String  @id @default(uuid())
+  externalUserId String  @unique
   username       String  @unique
   imageUrl       String  @db.Text
-  externalUserId String  @unique
   bio            String? @db.Text
 
   following  Follow[] @relation("Following")
