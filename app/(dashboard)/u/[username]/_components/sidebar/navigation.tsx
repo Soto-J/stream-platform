@@ -28,8 +28,8 @@ export const Navigation = () => {
       icon: MessageSquare,
     },
     {
-      label: "Commuinity",
-      href: `/u/${user?.username}/commuinity`,
+      label: "Community",
+      href: `/u/${user?.username}/community`,
       icon: MessageSquare,
     },
   ];
