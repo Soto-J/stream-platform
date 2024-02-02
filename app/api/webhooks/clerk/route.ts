@@ -81,7 +81,7 @@ export async function POST(req: Request) {
         externalUserId: evt.data.id,
       },
       data: {
-        username: evt.data.username!,
+        username: evt.data.username || "",
         imageUrl: evt.data.image_url,
       },
     });
