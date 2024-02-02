@@ -6,6 +6,7 @@ import { UrlCard } from "./_components/url-card";
 import { KeyCard } from "./_components/key-card";
 
 import { Button } from "@/components/ui/button";
+import { CheckHydration } from "@/components/check-hydration";
 
 export default async function KeyPage() {
   const self = await getSelf();
@@ -29,8 +30,10 @@ export default async function KeyPage() {
       </div>
 
       <div className="space-y-4">
-        <UrlCard value={stream.serverUrl} />
-        <KeyCard value={stream.streamKey} />
+        <CheckHydration>
+          <UrlCard value={stream.serverUrl} />
+          <KeyCard value={stream.streamKey} />
+        </CheckHydration>
       </div>
     </div>
   );

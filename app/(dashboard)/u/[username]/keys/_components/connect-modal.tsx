@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { AlertTriangle } from "lucide-react";
+import { IngressInput } from "livekit-server-sdk";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -22,16 +23,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+const RTMP = String(IngressInput.RTMP_INPUT);
+const WHIP = String(IngressInput.WHIP_INPUT);
+
+type IngressType = typeof RTMP | typeof WHIP;
+
 export const ConnectModal = () => {
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
-
-  if (!isHydrated) {
-    return null;
-  }
+  const [ingressType, setIngressType] = useState<IngressType>(RTMP);
 
   return (
     <Dialog>
