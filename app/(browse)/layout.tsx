@@ -8,7 +8,7 @@ type BrowserLayoutProps = {
   children: React.ReactNode;
 };
 
-const BrowseLayout = ({ children }: BrowserLayoutProps) => {
+export default function BrowseLayout({ children }: BrowserLayoutProps) {
   return (
     <>
       <Navbar />
@@ -21,6 +21,4 @@ const BrowseLayout = ({ children }: BrowserLayoutProps) => {
       </div>
     </>
   );
-};
-
-export default BrowseLayout;
+}
