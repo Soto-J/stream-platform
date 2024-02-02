@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 import { getSelf } from "@/lib/auth-service";
 import { db } from "@/lib/db";
 
@@ -12,7 +14,6 @@ import {
   IngressVideoEncodingPreset,
   type CreateIngressOptions,
 } from "livekit-server-sdk";
-import { revalidatePath } from "next/cache";
 
 const roomService = new RoomServiceClient(
   process.env.LIVEKIT_API_URL!,
@@ -23,6 +24,7 @@ const roomService = new RoomServiceClient(
 const ingressClient = new IngressClient(process.env.LIVEKIT_API_URL!);
 
 export const resetIngresses = async (hostIdentity: string) => {
+  console.log("HEllo");
   const ingresses = await ingressClient.listIngress({
     roomName: hostIdentity,
   });
@@ -71,7 +73,6 @@ export const createIngress = async (ingressType: IngressInput) => {
   }
 
   const ingress = await ingressClient.createIngress(ingressType, options);
-
   if (!ingress || !ingress.url || !ingress.streamKey) {
     throw new Error("Failed to create ingress");
   }

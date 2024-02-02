@@ -5,7 +5,6 @@ import { ConnectModal } from "./_components/connect-modal";
 import { UrlCard } from "./_components/url-card";
 import { KeyCard } from "./_components/key-card";
 
-import { Button } from "@/components/ui/button";
 import { CheckHydration } from "@/components/check-hydration";
 
 export default async function KeyPage() {
