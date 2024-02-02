@@ -6,6 +6,7 @@ import { updateStream } from "@/actions/stream";
 
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type FieldTypes = "isChatEnabled" | "isChatDelayed" | "isChatFollowersOnly";
 
@@ -31,10 +32,8 @@ export const ToggleCard = ({
 
     startTransition(() => {
       updateStream({ [field]: !value })
-        .then((data) =>
-          toast.success(
-            `${toastLabel} settings ${value ? "disabled" : "enabled"}.`,
-          ),
+        .then(() =>
+          toast.success(`${toastLabel} ${value ? "disabled" : "enabled"}.`),
         )
         .catch(() => toast.error("Failed to update chat settings"));
     });
@@ -43,7 +42,7 @@ export const ToggleCard = ({
   return (
     <div className="rounded-xl bg-muted p-6">
       <div className="flex items-center justify-between">
-        <p className="shrink-0 font-semibold">{label}</p>
+        <p className="font-semibold">{label}</p>
 
         <div className="space-y-2">
           <Switch
@@ -57,4 +56,8 @@ export const ToggleCard = ({
       </div>
     </div>
   );
+};
+
+export const ToggleCardSkeleton = () => {
+  return <Skeleton className="w-full rounded-xl p-10" />;
 };

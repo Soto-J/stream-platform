@@ -31,7 +31,6 @@ export const updateStream = async (values: Partial<Stream>) => {
 
     const stream = await db.stream.update({
       where: { id: selfStream.id },
-      // data: { ...validData },
       data: { ...values },
     });
 
