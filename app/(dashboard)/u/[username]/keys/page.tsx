@@ -1,10 +1,11 @@
 import { getSelf } from "@/lib/auth-service";
+import { getStreamByUserId } from "@/lib/stream-service";
 
+import { ConnectModal } from "./_components/connect-modal";
 import { UrlCard } from "./_components/url-card";
 import { KeyCard } from "./_components/key-card";
 
 import { Button } from "@/components/ui/button";
-import { getStreamByUserId } from "@/lib/stream-service";
 
 export default async function KeyPage() {
   const self = await getSelf();
@@ -24,7 +25,7 @@ export default async function KeyPage() {
       <div className="mb-4 flex items-center justify-between">
         <h1 className="text-2xl font-bold">Keys & URLs</h1>
 
-        <Button variant="primary">Generate</Button>
+        <ConnectModal />
       </div>
 
       <div className="space-y-4">
