@@ -24,7 +24,7 @@ const roomService = new RoomServiceClient(
 const ingressClient = new IngressClient(process.env.LIVEKIT_API_URL!);
 
 export const resetIngresses = async (hostIdentity: string) => {
-  console.log("HEllo");
+  console.log({ hostIdentity });
   const ingresses = await ingressClient.listIngress({
     roomName: hostIdentity,
   });
@@ -48,6 +48,8 @@ export const createIngress = async (ingressType: IngressInput) => {
   if (!self) {
     throw new Error("User not found");
   }
+
+  console.log({ ingressClient });
 
   await resetIngresses(self.id);
 
