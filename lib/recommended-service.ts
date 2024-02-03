@@ -3,10 +3,14 @@ import { db } from "@/lib/db";
 import { getSelf } from "./auth-service";
 import { Prisma } from "@prisma/client";
 
-const userWithStream = Prisma.validator<Prisma.UserDefaultArgs>()({
-  include: { stream: true },
+const userWithIsLive = Prisma.validator<Prisma.UserDefaultArgs>()({
+  include: {
+    stream: {
+      select: { isLive: true },
+    },
+  },
 });
-export type UserWithStream = Prisma.UserGetPayload<typeof userWithStream>;
+export type UserWithIsLive = Prisma.UserGetPayload<typeof userWithIsLive>;
 
 export const getRecommended = async () => {
   let userId;
@@ -42,11 +46,19 @@ export const getRecommended = async () => {
             },
           ],
         },
-        include: { stream: true },
+        include: {
+          stream: {
+            select: { isLive: true },
+          },
+        },
       })
     : await db.user.findMany({
         orderBy: { createdAt: "desc" },
-        include: { stream: true },
+        include: {
+          stream: {
+            select: { isLive: true },
+          },
+        },
       });
 
   return users;

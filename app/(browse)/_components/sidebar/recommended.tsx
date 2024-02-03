@@ -3,10 +3,10 @@
 import { useSidebar } from "@/store/use-sidebar";
 
 import { UserItem, UserItemSkeleton } from "./user-item";
-import { type UserWithStream } from "@/lib/recommended-service";
+import { type UserWithIsLive } from "@/lib/recommended-service";
 
 type RecommendedServiceProps = {
-  data: UserWithStream[];
+  data: UserWithIsLive[];
 };
 
 export const Recommended = ({ data }: RecommendedServiceProps) => {
