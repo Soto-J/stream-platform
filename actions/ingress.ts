@@ -49,8 +49,6 @@ export const createIngress = async (ingressType: IngressInput) => {
     throw new Error("User not found");
   }
 
-  console.log({ ingressClient });
-
   await resetIngresses(self.id);
 
   const options: CreateIngressOptions = {
@@ -75,6 +73,7 @@ export const createIngress = async (ingressType: IngressInput) => {
   }
 
   const ingress = await ingressClient.createIngress(ingressType, options);
+  
   if (!ingress || !ingress.url || !ingress.streamKey) {
     throw new Error("Failed to create ingress");
   }
