@@ -3,8 +3,6 @@ import { db } from "@/lib/db";
 import { getSelf } from "./auth-service";
 
 export const getRecommended = async () => {
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
-
   let userId;
 
   try {
@@ -38,9 +36,11 @@ export const getRecommended = async () => {
             },
           ],
         },
+        include: { stream: true },
       })
     : await db.user.findMany({
         orderBy: { createdAt: "desc" },
+        include: { stream: true },
       });
 
   return users;
