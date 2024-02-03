@@ -2,8 +2,9 @@
 
 import { useSidebar } from "@/store/use-sidebar";
 
-import { UserItem, UserItemSkeleton } from "./user-item";
 import { type UserWithIsLive } from "@/lib/recommended-service";
+
+import { UserItem, UserItemSkeleton } from "./user-item";
 
 type RecommendedServiceProps = {
   data: UserWithIsLive[];
