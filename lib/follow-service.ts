@@ -3,10 +3,16 @@ import { db } from "./db";
 
 import { getSelf } from "./auth-service";
 
-const followsUser = Prisma.validator<Prisma.FollowDefaultArgs>()({
-  include: { following: true },
+const followsUserWithStream = Prisma.validator<Prisma.FollowDefaultArgs>()({
+  include: {
+    following: {
+      include: { stream: true },
+    },
+  },
 });
-export type FollowsUser = Prisma.FollowGetPayload<typeof followsUser>;
+export type FollowsUserWithStream = Prisma.FollowGetPayload<
+  typeof followsUserWithStream
+>;
 
 export const getFollowedUsers = async () => {
   try {
@@ -25,7 +31,11 @@ export const getFollowedUsers = async () => {
           },
         },
       },
-      include: { following: true },
+      include: {
+        following: {
+          include: { stream: true },
+        },
+      },
     });
 
     return followedUsers;
