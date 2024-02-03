@@ -1,12 +1,12 @@
 "use client";
 
 import { useSidebar } from "@/store/use-sidebar";
-import { type User } from "@prisma/client";
 
 import { UserItem, UserItemSkeleton } from "./user-item";
+import { type UserWithStream } from "@/lib/recommended-service";
 
 type RecommendedServiceProps = {
-  data: User[];
+  data: UserWithStream[];
 };
 
 export const Recommended = ({ data }: RecommendedServiceProps) => {

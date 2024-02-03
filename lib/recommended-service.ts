@@ -1,6 +1,12 @@
 import { db } from "@/lib/db";
 
 import { getSelf } from "./auth-service";
+import { Prisma } from "@prisma/client";
+
+const userWithStream = Prisma.validator<Prisma.UserDefaultArgs>()({
+  include: { stream: true },
+});
+export type UserWithStream = Prisma.UserGetPayload<typeof userWithStream>;
 
 export const getRecommended = async () => {
   let userId;
