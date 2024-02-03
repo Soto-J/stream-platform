@@ -2,11 +2,12 @@
 
 import { useSidebar } from "@/store/use-sidebar";
 
-import { FollowsUserWithStream } from "@/lib/follow-service";
+import { FollowsUserWithIsLive } from "@/lib/follow-service";
+
 import { UserItem, UserItemSkeleton } from "./user-item";
 
 type FollowingProps = {
-  data: FollowsUserWithStream[];
+  data: FollowsUserWithIsLive[];
 };
 
 export const Following = ({ data = [] }: FollowingProps) => {
