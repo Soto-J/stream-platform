@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useRef } from "react";
+import { useRef } from "react";
 
 import { Participant, Track } from "livekit-client";
 import { useTracks } from "@livekit/components-react";
