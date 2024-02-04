@@ -4,6 +4,7 @@ import { userViewToken } from "@/hooks/use-viewer-token";
 
 import { UserWithIsLive } from "@/lib/recommended-service";
 import { LiveKitRoom } from "@livekit/components-react";
+
 import { Video } from "./video";
 
 type StreamPlayerProps = {
