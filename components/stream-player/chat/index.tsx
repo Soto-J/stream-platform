@@ -14,6 +14,7 @@ import {
 
 import { ChatHeader } from "./chat-header";
 import { ChatForm } from "./chat-form";
+import { ChatList } from "./chat-list";
 
 type ChatProps = {
   viewerName: string;
@@ -42,7 +43,7 @@ export const Chat = ({
   const participant = useRemoteParticipant(hostIdentity);
 
   const isOnline = participant && connectionState === ConnectionState.Connected;
-  
+
   const isHidden = !isChatEnabled || !isOnline;
 
   const matches = useMediaQuery("(max-width: 1024px)");
@@ -55,7 +56,7 @@ export const Chat = ({
     }
   }, [matches, onExpand]);
 
-  const reveresedMessages = useMemo(
+  const reversedMessages = useMemo(
     () => messages.sort((a, b) => b.timestamp - a.timestamp),
     [messages],
   );
@@ -79,6 +80,7 @@ export const Chat = ({
 
       {variant === ChatVariant.CHAT && (
         <>
+          <ChatList messages={reversedMessages} isHidden={isHidden} />
           <ChatForm
             onSubmit={onSubmit}
             onChange={onChange}
