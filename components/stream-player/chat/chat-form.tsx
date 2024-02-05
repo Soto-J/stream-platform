@@ -67,7 +67,8 @@ export const ChatForm = ({
       onSubmit={handleSubmit}
       className="flex flex-col items-center gap-y-4 p-3"
     >
-      <ChatInfo />
+      <ChatInfo isDelayed={isDelayed} isFollowersOnly={isFollowersOnly} />
+
       <Input
         type="text"
         onChange={(e) => onChange(e.target.value)}
@@ -81,7 +82,7 @@ export const ChatForm = ({
       />
 
       <Button type="submit" variant="primary" size="sm" className="ml-auto">
-        chat
+        Chat
       </Button>
     </form>
   );
