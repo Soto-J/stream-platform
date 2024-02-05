@@ -13,6 +13,7 @@ import {
 } from "@livekit/components-react";
 
 import { ChatHeader } from "./chat-header";
+import { ChatForm } from "./chat-form";
 
 type ChatProps = {
   viewerName: string;
@@ -21,6 +22,7 @@ type ChatProps = {
   isFollowing: boolean;
   isChatEnabled: boolean;
   isChatFollowersOnly: boolean;
+  isChatDelayed: boolean;
 };
 
 export const Chat = ({
@@ -29,6 +31,8 @@ export const Chat = ({
   hostName,
   isFollowing,
   isChatEnabled,
+  isChatFollowersOnly,
+  isChatDelayed,
 }: ChatProps) => {
   const [value, setValue] = useState("");
 
@@ -38,6 +42,7 @@ export const Chat = ({
   const participant = useRemoteParticipant(hostIdentity);
 
   const isOnline = participant && connectionState === ConnectionState.Connected;
+  
   const isHidden = !isChatEnabled || !isOnline;
 
   const matches = useMediaQuery("(max-width: 1024px)");
@@ -56,7 +61,9 @@ export const Chat = ({
   );
 
   const onSubmit = () => {
-    if (!send) return;
+    if (!send) {
+      return;
+    }
 
     send(value);
     setValue("");
@@ -70,7 +77,19 @@ export const Chat = ({
     <div className="flex h-[calc(100vh-80px)] flex-col border-b border-l bg-background pt-0">
       <ChatHeader />
 
-      {variant === ChatVariant.CHAT && <p>Chat Mode</p>}
+      {variant === ChatVariant.CHAT && (
+        <>
+          <ChatForm
+            onSubmit={onSubmit}
+            onChange={onChange}
+            value={value}
+            isFollowing={isFollowing}
+            isFollowersOnly={isChatFollowersOnly}
+            isDelayed={isChatDelayed}
+            isHidden={isHidden}
+          />
+        </>
+      )}
 
       {variant === ChatVariant.COMMUNITY && <p>Community</p>}
     </div>
