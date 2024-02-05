@@ -56,8 +56,6 @@ export const ChatForm = ({
     onSubmit();
   };
 
-  console.log("isHidden", isHidden);
-
   if (isHidden) {
     return null;
   }

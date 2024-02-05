@@ -1,6 +1,8 @@
-import { Hint } from "@/components/hint";
-import { Info } from "lucide-react";
 import { useMemo } from "react";
+
+import { Info } from "lucide-react";
+
+import { Hint } from "@/components/hint";
 
 type ChatInfoProps = {
   isDelayed: boolean;
