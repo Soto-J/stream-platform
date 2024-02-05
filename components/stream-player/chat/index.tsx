@@ -5,12 +5,13 @@ import { useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { ChatVariant, useChatSidebar } from "@/store/use-chat-sidebar";
 
+import { ConnectionState } from "livekit-client";
 import {
   useChat,
   useConnectionState,
   useRemoteParticipant,
 } from "@livekit/components-react";
-import { ConnectionState } from "livekit-client";
+
 import { ChatHeader } from "./chat-header";
 
 type ChatProps = {
