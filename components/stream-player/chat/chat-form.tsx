@@ -4,10 +4,11 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
+import { ChatInfo } from "./chat-info";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ChatInfo } from "./chat-info";
 
 type ChatFormProps = {
   onSubmit: () => void;

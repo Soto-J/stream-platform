@@ -20,7 +20,7 @@ export const ChatMessage = ({ data }: ChatMessageProps) => {
       <div className="flex grow flex-wrap items-baseline gap-1">
         <p className="whitespace-nowrap text-sm font-semibold">
           <span className="truncate" style={{ color: color }}>
-            {data.from?.name}
+            {data.from?.name}:{" "}
           </span>
         </p>
 
