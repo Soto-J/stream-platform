@@ -10,6 +10,7 @@ import { LiveKitRoom } from "@livekit/components-react";
 
 import { Video } from "./video";
 import { Chat } from "./chat";
+import { ChatToggle } from "./chat/chat-toggle";
 
 type StreamPlayerProps = {
   user: UserWithStream;
@@ -32,6 +33,12 @@ export const StreamPlayer = ({
 
   return (
     <>
+      {isCollapsed && (
+        <div className="fixed right-2 top-[100px] z-50 hidden lg:block">
+          <ChatToggle />
+        </div>
+      )}
+
       <LiveKitRoom
         token={token}
         serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
