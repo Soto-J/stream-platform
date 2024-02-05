@@ -1,11 +1,10 @@
 "use client";
 
+import { type CustomStream, type UserWithStream } from "@/lib/user-service";
 import { cn } from "@/lib/utils";
 
 import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { userViewToken } from "@/hooks/use-viewer-token";
-
-import { type CustomStream, type UserWithStream } from "@/lib/user-service";
 
 import { LiveKitRoom } from "@livekit/components-react";
 
@@ -52,6 +51,7 @@ export const StreamPlayer = ({
             hostIdentity={user.id}
             isFollowing={isFollowing}
             isChatEnabled={stream.isChatEnabled}
+            isChatFollowersOnly={stream.isChatFollowersOnly}
           />
         </div>
       </LiveKitRoom>
