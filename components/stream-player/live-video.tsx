@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useEventListener } from "usehooks-ts";
 
@@ -8,6 +8,7 @@ import { Participant, Track } from "livekit-client";
 import { useTracks } from "@livekit/components-react";
 
 import { FullscreenControl } from "./controls/fullscreen-control";
+import { VolumeControl } from "./controls/volume-control";
 
 type LiveVideoProps = {
   participant: Participant;
@@ -18,6 +19,8 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [volume, setVolume] = useState(0);
+  const [volumeBeforMute, setVolumeBeforeMute] = useState(volume);
 
   const onToggleFullscreen = () => {
     if (isFullscreen) {
@@ -36,6 +39,34 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
   // TypeError: Failed to execute 'exitFullscreen' on 'Document': Document not active.
   useEventListener("fullscreenchange", handleFullscreenChange, wrapperRef);
 
+  const onVolumeChange = (volume: number) => {
+    setVolume(+volume);
+
+    if (videoRef.current) {
+      videoRef.current.muted = volume === 0;
+      videoRef.current.volume = +volume * 0.01;
+    }
+  };
+
+  const onToggleMute = () => {
+    const isMuted = volume === 0;
+
+    if (!isMuted) {
+      setVolumeBeforeMute(volume);
+    }
+
+    setVolume(isMuted ? volumeBeforMute || 1 : 0);
+
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      videoRef.current.volume = isMuted ? volumeBeforMute * 0.01 : 0;
+    }
+  };
+
+  useEffect(() => {
+    onVolumeChange(0);
+  }, []);
+
   useTracks([Track.Source.Camera, Track.Source.Microphone])
     .filter((track) => track.participant.identity === participant.identity)
     .forEach((track) => {
@@ -52,6 +83,11 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
           <FullscreenControl
             isFullscreen={isFullscreen}
             onToggle={onToggleFullscreen}
+          />
+          <VolumeControl
+            onToggle={onToggleMute}
+            onChange={onVolumeChange}
+            volume={volume}
           />
         </div>
       </div>
