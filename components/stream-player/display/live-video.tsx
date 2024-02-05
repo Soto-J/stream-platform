@@ -7,8 +7,8 @@ import { useEventListener } from "usehooks-ts";
 import { Participant, Track } from "livekit-client";
 import { useTracks } from "@livekit/components-react";
 
-import { FullscreenControl } from "./controls/fullscreen-control";
-import { VolumeControl } from "./controls/volume-control";
+import { FullscreenControl } from "../controls/fullscreen-control";
+import { VolumeControl } from "../controls/volume-control";
 
 type LiveVideoProps = {
   participant: Participant;

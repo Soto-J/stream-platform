@@ -1,17 +1,20 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+
+import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { userViewToken } from "@/hooks/use-viewer-token";
 
-import { UserWithIsLive } from "@/lib/recommended-service";
+import { type CustomStream, type UserWithStream } from "@/lib/user-service";
+
 import { LiveKitRoom } from "@livekit/components-react";
 
 import { Video } from "./video";
+import { Chat } from "./chat";
 
 type StreamPlayerProps = {
-  user: UserWithIsLive;
-  stream: {
-    isLive: boolean;
-  };
+  user: UserWithStream;
+  stream: CustomStream;
   isFollowing: boolean;
 };
 
@@ -20,6 +23,8 @@ export const StreamPlayer = ({
   stream,
   isFollowing,
 }: StreamPlayerProps) => {
+  const { isCollapsed } = useChatSidebar();
+
   const { token, identity, name } = userViewToken(user.id);
 
   if (!token || !identity || !name) {
@@ -31,10 +36,23 @@ export const StreamPlayer = ({
       <LiveKitRoom
         token={token}
         serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
-        className="grid h-full grid-cols-1 lg:grid-cols-3 lg:gap-y-0 xl:grid-cols-3 2xl:grid-cols-6"
+        className={cn(
+          "grid h-full grid-cols-1 lg:grid-cols-3 lg:gap-y-0 xl:grid-cols-3 2xl:grid-cols-6",
+          isCollapsed && "lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2",
+        )}
       >
         <div className="hidden-scrollbar col-span-1 space-y-4 pb-10 lg:col-span-2 lg:overflow-y-auto xl:col-span-2 2xl:col-span-5">
           <Video hostName={user.username} hostIdentity={user.id} />
+        </div>
+
+        <div className={cn("col-span-1", isCollapsed && "hidden")}>
+          <Chat
+            viewerName={name}
+            hostName={user.username}
+            hostIdentity={user.id}
+            isFollowing={isFollowing}
+            isChatEnabled={stream.isChatEnabled}
+          />
         </div>
       </LiveKitRoom>
     </>

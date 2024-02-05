@@ -7,9 +7,9 @@ import {
   useTracks,
 } from "@livekit/components-react";
 
-import { OfflineVideo } from "./offline-video";
-import { LoadingVideo } from "./loading-video";
-import { LiveVideo } from "./live-video";
+import { OfflineVideo } from "./display/offline-video";
+import { LoadingVideo } from "./display/loading-video";
+import { LiveVideo } from "./display/live-video";
 
 type VideoProps = {
   hostName: string;
