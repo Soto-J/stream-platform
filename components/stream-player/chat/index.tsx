@@ -12,9 +12,10 @@ import {
   useRemoteParticipant,
 } from "@livekit/components-react";
 
-import { ChatHeader } from "./chat-header";
-import { ChatForm } from "./chat-form";
-import { ChatList } from "./chat-list";
+import { ChatHeader, ChatHeaderSkeleton } from "./chat-header";
+import { ChatForm, ChatFormSkeleton } from "./chat-form";
+import { ChatList, ChatListSkeleton } from "./chat-list";
+import { ChatCommunity } from "./chat-community";
 
 type ChatProps = {
   viewerName: string;
@@ -93,7 +94,23 @@ export const Chat = ({
         </>
       )}
 
-      {variant === ChatVariant.COMMUNITY && <p>Community</p>}
+      {variant === ChatVariant.COMMUNITY && (
+        <ChatCommunity
+          viewerName={viewerName}
+          hostName={hostName}
+          isHidden={isHidden}
+        />
+      )}
+    </div>
+  );
+};
+
+export const ChatSkeleton = () => {
+  return (
+    <div className="flex h-[calc(100vh-80px)] flex-col border-2 border-b border-l pt-0">
+      <ChatHeaderSkeleton />
+      <ChatListSkeleton />
+      <ChatFormSkeleton />
     </div>
   );
 };

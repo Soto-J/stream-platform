@@ -95,7 +95,7 @@ export const ChatForm = ({
 
 export const ChatFormSkeleton = () => {
   return (
-    <div className="flexe-col flex items-center gap-y-4 p-3">
+    <div className="flex flex-col items-center gap-y-4 p-3">
       <Skeleton className="h-10 w-full" />
       <div className="ml-auto flex items-center gap-x-2">
         <Skeleton className="h-7 w-7" />

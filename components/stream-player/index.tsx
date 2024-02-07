@@ -8,9 +8,10 @@ import { userViewToken } from "@/hooks/use-viewer-token";
 
 import { LiveKitRoom } from "@livekit/components-react";
 
-import { Video } from "./video";
-import { Chat } from "./chat";
+import { Video, VideoSkeleton } from "./video";
+import { Chat, ChatSkeleton } from "./chat";
 import { ChatToggle } from "./chat/chat-toggle";
+import { Skeleton } from "../ui/skeleton";
 
 type StreamPlayerProps = {
   user: UserWithStream;
@@ -28,7 +29,7 @@ export const StreamPlayer = ({
   const { token, identity, name } = userViewToken(user.id);
 
   if (!token || !identity || !name) {
-    return <div>Cannot watch stream</div>;
+    return <StreamPlayerSkeleton />;
   }
 
   return (
@@ -64,5 +65,19 @@ export const StreamPlayer = ({
         </div>
       </LiveKitRoom>
     </>
+  );
+};
+
+export const StreamPlayerSkeleton = () => {
+  return (
+    <div className="grid h-full grid-cols-1 lg:grid-cols-3 lg:gap-y-0 xl:grid-cols-3 2xl:grid-cols-6">
+      <div className="hidden-scrollbar col-span-1 space-y-4 pb-10 lg:col-span-2 lg:overflow-y-auto xl:col-span-2 2xl:col-span-5">
+        <VideoSkeleton />
+        {/* <HeaderSkeleton /> */}
+      </div>
+      <div className="col-span-1 bg-background">
+        <ChatSkeleton />
+      </div>
+    </div>
   );
 };
