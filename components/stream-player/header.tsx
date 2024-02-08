@@ -18,7 +18,7 @@ type HeaderProps = {
   viewerIdentity: string;
   imageUrl: string;
   isFollowing: boolean;
-  name: string;
+  streamName: string;
 };
 
 export const Header = ({
@@ -27,7 +27,7 @@ export const Header = ({
   viewerIdentity,
   imageUrl,
   isFollowing,
-  name,
+  streamName,
 }: HeaderProps) => {
   const participants = useParticipants();
   const host = useRemoteParticipant(hostIdentity);
@@ -38,7 +38,7 @@ export const Header = ({
     participants.length - 1 === 1 ? "viewer" : "viewers"
   }`;
 
-  const isHost = viewerIdentity === `host-${hostIdentity}`;
+  const isHost = viewerIdentity.includes("host");
 
   return (
     <div className="flex flex-col items-start justify-between gap-y-4 px-4 lg:flex-row lg:gap-y-0">
@@ -57,7 +57,7 @@ export const Header = ({
             <VerifiedMark />
           </div>
 
-          <p className="text-sm font-semibold">{name}</p>
+          <p className="text-sm font-semibold">{streamName}</p>
 
           {isLive ? (
             <div className="flex items-center gap-x-1 text-xs font-semibold text-rose-500">

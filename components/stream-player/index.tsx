@@ -11,6 +11,7 @@ import { LiveKitRoom } from "@livekit/components-react";
 import { ChatToggle } from "./chat/chat-toggle";
 import { Video, VideoSkeleton } from "./video";
 import { Header, HeaderSkeleton } from "./header";
+import { InfoCard } from "./info-card";
 import { Chat, ChatSkeleton } from "./chat";
 
 type StreamPlayerProps = {
@@ -56,7 +57,13 @@ export const StreamPlayer = ({
             viewerIdentity={identity}
             imageUrl={user.imageUrl}
             isFollowing={isFollowing}
-            name={stream.name}
+            streamName={stream.name}
+          />
+          <InfoCard
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            streamName={stream.name}
+            thumbnailUrl={stream.thumbnailUrl}
           />
         </div>
 
