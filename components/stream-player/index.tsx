@@ -90,6 +90,7 @@ export const StreamPlayerSkeleton = () => {
         <VideoSkeleton />
         <HeaderSkeleton />
       </div>
+      
       <div className="col-span-1 bg-background">
         <ChatSkeleton />
       </div>
