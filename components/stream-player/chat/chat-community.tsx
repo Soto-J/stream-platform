@@ -28,7 +28,6 @@ export const ChatCommunity = ({
   const debouncedValue = useDebounce(value, 500);
 
   const participants = useParticipants();
-  console.log(participants);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
