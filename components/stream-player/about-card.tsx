@@ -23,17 +23,14 @@ export const AboutCard = ({
 
   return (
     <div className="px-4">
-      <div className="group flex flex-col gap-y-3 rounded-xl bg-background p-6 lg:p-10">
+      <div className="group flex flex-col gap-y-3 rounded-xl bg-background p-4 pb-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-x-2 text-lg font-semibold lg:text-2xl">
             About {hostName}
             <VerifiedMark />
           </div>
 
-          {isHost && 
-          <p>Edit</p>
-          // <AboutModal />
-          }
+          {isHost && <AboutModal bio={bio} />}
         </div>
 
         <div className="text-sm text-muted-foreground">
