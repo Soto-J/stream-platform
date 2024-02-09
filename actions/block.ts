@@ -1,7 +1,8 @@
 "use server";
 
-import { blockUser, unBlockUser } from "@/lib/block-service";
 import { revalidatePath } from "next/cache";
+
+import { blockUser, unBlockUser } from "@/lib/block-service";
 
 export const onBlockUser = async (id: string) => {
   try {
