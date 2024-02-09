@@ -5,9 +5,7 @@ import { getUserByUsername } from "@/lib/user-service";
 import { StreamPlayer } from "@/components/stream-player";
 
 type CreatorPageProps = {
-  params: {
-    username: string;
-  };
+  params: { username: string };
 };
 
 export default async function CreatorPage({ params }: CreatorPageProps) {

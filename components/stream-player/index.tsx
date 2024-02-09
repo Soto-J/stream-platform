@@ -13,6 +13,7 @@ import { Video, VideoSkeleton } from "./video";
 import { Header, HeaderSkeleton } from "./header";
 import { InfoCard } from "./info-card";
 import { Chat, ChatSkeleton } from "./chat";
+import { AboutCard } from "./about-card";
 
 type StreamPlayerProps = {
   user: UserWithStream;
@@ -64,6 +65,13 @@ export const StreamPlayer = ({
             viewerIdentity={identity}
             streamName={stream.name}
             thumbnailUrl={stream.thumbnailUrl}
+          />
+          <AboutCard
+            hostName={user.username}
+            hostIdentity={user.id}
+            viewerIdentity={identity}
+            bio={user.bio}
+            followedByCount={user._count.followedBy}
           />
         </div>
 
