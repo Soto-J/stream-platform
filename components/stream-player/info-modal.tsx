@@ -8,6 +8,12 @@ import {
   FormEvent,
   ChangeEvent,
 } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+import { UploadDropzone } from "@/lib/uploadthing";
+
+import { updateStream } from "@/actions/stream";
 
 import { toast } from "sonner";
 
@@ -22,8 +28,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { updateStream } from "@/actions/stream";
-import { UploadDropzone } from "@/lib/uploadthing";
+import { Hint } from "@/components/hint";
+import { Trash } from "lucide-react";
 
 type InfoModalProps = {
   streamName: string;
@@ -38,8 +44,18 @@ export const InfoModal = ({ streamName, thumbnailUrl }: InfoModalProps) => {
 
   const closeRef = useRef<ElementRef<"button">>(null);
 
+  const router = useRouter();
+
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewStreamName(e.target.value);
+  };
+
+  const onRemoveThumbnail = () => {
+    startTransition(() => {
+      updateStream({ thumbnailUrl: null })
+        .then(() => toast.success(`Thumbnail removed!`))
+        .catch((error) => toast.error(error.message));
+    });
   };
 
   const onSubumit = (e: FormEvent<HTMLFormElement>) => {
@@ -82,9 +98,44 @@ export const InfoModal = ({ streamName, thumbnailUrl }: InfoModalProps) => {
           <div className="space-y-2">
             <Label>Thumbnail</Label>
 
-            <div className="rounded-xl border outline-dashed outline-muted">
-              <UploadDropzone endpoint="thumbnailUploader" />
-            </div>
+            {thumbnailUrl ? (
+              <div className="relative aspect-video overflow-hidden rounded-xl border border-white/10">
+                <div className="absolute right-2 top-2 z-10">
+                  <Hint asChild label="Remove thumbnail" side="left">
+                    <Button
+                      onClick={onRemoveThumbnail}
+                      disabled={isPending}
+                      type="button"
+                      variant="ghost"
+                      className="h-auto w-auto p-1.5"
+                    >
+                      <Trash className="h-4 w-4" />
+                    </Button>
+                  </Hint>
+                </div>
+
+                <Image
+                  fill
+                  src={thumbnailUrl}
+                  alt={streamName}
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              <div className="rounded-xl border outline-dashed outline-muted">
+                <UploadDropzone
+                  endpoint="thumbnailUploader"
+                  onClientUploadComplete={(res) => {
+                    setNewThumbnailUrl(res?.[0]?.url);
+                    router.refresh();
+                  }}
+                  appearance={{
+                    label: { color: "#FFFFFF" },
+                    allowedContent: { color: "#FFFFFF" },
+                  }}
+                />
+              </div>
+            )}
           </div>
 
           <div className="flex justify-between">

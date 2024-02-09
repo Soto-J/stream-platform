@@ -48,9 +48,15 @@ export const InfoCard = ({
         <div className="space-y-4 p-4 lg:p-6">
           <div>
             <h3 className="mb-2 text-sm text-muted-foreground">Thumbnail</h3>
+
             {thumbnailUrl && (
-              <div className="bordere relative aspect-video w-[200px] overflow-hidden rounded-md border-white/10">
-                <Image src={thumbnailUrl} alt={streamName} />
+              <div className="relative aspect-video w-[200px] overflow-hidden rounded-md border border-white/10">
+                <Image
+                  fill
+                  src={thumbnailUrl}
+                  alt={streamName}
+                  className="object-cover"
+                />
               </div>
             )}
           </div>
