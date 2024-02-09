@@ -26,6 +26,7 @@ export const ourFileRouter = {
         data: { thumbnailUrl: file.url },
       });
 
+      console.log("thumbnail uploaded", file.url);
       return { fileUrl: file.url };
     }),
 } satisfies FileRouter;

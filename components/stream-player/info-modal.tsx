@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { updateStream } from "@/actions/stream";
+import { UploadDropzone } from "@/lib/uploadthing";
 
 type InfoModalProps = {
   streamName: string;
@@ -30,23 +31,25 @@ type InfoModalProps = {
 };
 
 export const InfoModal = ({ streamName, thumbnailUrl }: InfoModalProps) => {
-  const [initialName, setInitialName] = useState(streamName);
+  const [newStreamName, setNewStreamName] = useState(streamName);
+  const [newThumbnailUrl, setNewThumbnailUrl] = useState(thumbnailUrl);
+
   const [isPending, startTransition] = useTransition();
 
   const closeRef = useRef<ElementRef<"button">>(null);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInitialName(e.target.value);
+    setNewStreamName(e.target.value);
   };
 
   const onSubumit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     startTransition(() => {
-      updateStream({ name: initialName })
+      updateStream({ name: newStreamName })
         .then((data) => {
           toast.success(`Stream updated to ${data.name}!`);
-          setTimeout(() => closeRef?.current?.click(), 800);
+          closeRef?.current?.click();
         })
         .catch((error) => toast.error(error.message));
     });
@@ -71,19 +74,22 @@ export const InfoModal = ({ streamName, thumbnailUrl }: InfoModalProps) => {
             <Input
               placeholder="Stream name"
               disabled={isPending}
-              value={initialName}
+              value={newStreamName}
               onChange={onChange}
             />
           </div>
 
+          <div className="space-y-2">
+            <Label>Thumbnail</Label>
+
+            <div className="rounded-xl border outline-dashed outline-muted">
+              <UploadDropzone endpoint="thumbnailUploader" />
+            </div>
+          </div>
+
           <div className="flex justify-between">
             <DialogClose asChild>
-              <Button
-                ref={closeRef}
-                disabled={isPending}
-                type="button"
-                variant="ghost"
-              >
+              <Button ref={closeRef} type="button" variant="ghost">
                 Cancel
               </Button>
             </DialogClose>
