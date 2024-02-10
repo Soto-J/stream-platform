@@ -35,7 +35,7 @@ export const AboutCard = ({
 
         <div className="text-sm text-muted-foreground">
           <span className="font-semibold text-primary">
-            {followedByCount} {followedByLabel}
+            {`${followedByCount} ${followedByLabel}`}
           </span>
         </div>
 

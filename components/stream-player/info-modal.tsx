@@ -46,10 +46,6 @@ export const InfoModal = ({ streamName, thumbnailUrl }: InfoModalProps) => {
 
   const router = useRouter();
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewStreamName(e.target.value);
-  };
-
   const onRemoveThumbnail = () => {
     startTransition(() => {
       updateStream({ thumbnailUrl: null })
@@ -91,7 +87,7 @@ export const InfoModal = ({ streamName, thumbnailUrl }: InfoModalProps) => {
               placeholder="Stream name"
               disabled={isPending}
               value={newStreamName}
-              onChange={onChange}
+              onChange={(e) => setNewStreamName(e.target.value)}
             />
           </div>
 
