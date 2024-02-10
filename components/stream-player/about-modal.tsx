@@ -1,13 +1,8 @@
 "use client";
 
-import {
-  ChangeEvent,
-  ElementRef,
-  FormEvent,
-  useRef,
-  useState,
-  useTransition,
-} from "react";
+import { ElementRef, FormEvent, useRef, useState, useTransition } from "react";
+
+import { toast } from "sonner";
 
 import {
   Dialog,
@@ -19,9 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Hint } from "@/components/hint";
 import { updateUser } from "@/actions/user";
-import { toast } from "sonner";
 
 type AboutModalProps = {
   bio: string | null;
@@ -70,12 +63,12 @@ export const AboutModal = ({ bio }: AboutModalProps) => {
           <div className="flex justify-between">
             <DialogClose asChild>
               <Button ref={closeRef} type="button" variant="ghost">
-                cancel
+                Cancel
               </Button>
             </DialogClose>
 
             <Button disabled={isPending} type="submit" variant="primary">
-              save
+              Save
             </Button>
           </div>
         </form>
