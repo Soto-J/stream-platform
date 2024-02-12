@@ -22,12 +22,6 @@ export const ResultCard = ({ stream }: ResultCardProps) => {
           username={stream.user.username}
         />
 
-        {stream.isLive && (
-          <div className="absolute left-2 top-2 transition-transform group-hover:translate-x-2 group-hover:translate-y-2">
-            <LiveBadge />
-          </div>
-        )}
-
         <div className="flex gap-x-3">
           <UserAvatar
             username={stream.user.username}

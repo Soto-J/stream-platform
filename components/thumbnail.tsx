@@ -1,6 +1,9 @@
 import Image from "next/image";
+
 import { UserAvatar } from "./user-avatar";
 import { Skeleton } from "./ui/skeleton";
+
+import { LiveBadge } from "@/components/live-badge";
 
 type ThumbnailProps = {
   src: string | null;
@@ -27,7 +30,7 @@ export const Thumbnail = ({
           className="rounded-md object-cover group-hover:-translate-y-2 group-hover:translate-x-2"
         />
       ) : (
-        <div className="flex h-full w-full flex-col items-center justify-center rounded-md bg-background transition-transform group-hover:-translate-y-1 group-hover:translate-x-2">
+        <div className="flex h-full w-full flex-col items-center justify-center rounded-md bg-background transition-transform group-hover:-translate-y-2 group-hover:translate-x-2">
           <UserAvatar
             showBadge
             imageUrl={fallbackUrl}
@@ -35,6 +38,12 @@ export const Thumbnail = ({
             isLive={isLive}
             size="lg"
           />
+        </div>
+      )}
+
+      {isLive && (
+        <div className="absolute left-2 top-2 transition-transform group-hover:translate-x-2 group-hover:translate-y-2">
+          <LiveBadge />
         </div>
       )}
     </div>
