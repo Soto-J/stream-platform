@@ -118,8 +118,8 @@ export const followUser = async (id: string) => {
 
     return await db.follow.create({
       data: {
-        followerId: otherUser.id,
-        followingId: self.id,
+        followerId: self.id,
+        followingId: otherUser.id,
       },
       include: {
         follower: true,

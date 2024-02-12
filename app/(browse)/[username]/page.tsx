@@ -13,7 +13,7 @@ type UserPageProps = {
 
 export default async function UserPage({ params }: UserPageProps) {
   const user = await getUserByUsername(params.username);
-  console.log("users", user?._count);
+
   if (!user || !user.stream) {
     notFound();
   }
