@@ -33,7 +33,8 @@ export const ChatForm = ({
 
   const isFollowersOnlyAndNotFollowing = isFollowersOnly && !isFollowing;
 
-  const isDisabled = isHidden || isFollowersOnlyAndNotFollowing || isDelayed;
+  const isDisabled =
+    isHidden || isFollowersOnlyAndNotFollowing || isDelayedBlocked;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
