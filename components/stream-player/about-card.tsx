@@ -20,7 +20,7 @@ export const AboutCard = ({
   const isHost = viewerIdentity.includes("host");
 
   const followedByLabel = followedByCount === 1 ? "follower" : "followers";
-
+  
   return (
     <div className="px-4">
       <div className="group flex flex-col gap-y-3 rounded-xl bg-background p-4 pb-6">

@@ -33,7 +33,7 @@ export const getRecommended = async () => {
             {
               NOT: {
                 following: {
-                  some: { followerId: userId },
+                  some: { followingId: userId },
                 },
               },
             },

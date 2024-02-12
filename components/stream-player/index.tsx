@@ -33,7 +33,7 @@ export const StreamPlayer = ({
   if (!token || !identity || !name) {
     return <StreamPlayerSkeleton />;
   }
-
+  
   return (
     <>
       {isCollapsed && (

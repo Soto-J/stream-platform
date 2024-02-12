@@ -43,7 +43,7 @@ export const Actions = ({
       if (isFollowing) {
         onUnfollow(hostIdentity)
           .then((data) =>
-            toast.success(`Succesfully unfollowed ${data.follower.username}!`),
+            toast.success(`Succesfully unfollowed ${data.following.username}!`),
           )
           .catch((error) =>
             toast.error(`Failed to unfollow: ${error.message}`),
@@ -51,7 +51,7 @@ export const Actions = ({
       } else {
         onFollow(hostIdentity)
           .then((data) =>
-            toast.success(`Succesfully followed ${data.follower.username}!`),
+            toast.success(`Succesfully followed ${data.following.username}!`),
           )
           .catch((error) => toast.error(`Failed to follow: ${error.mesaage}`));
       }
