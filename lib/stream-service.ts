@@ -4,7 +4,13 @@ import { Prisma } from "@prisma/client";
 import { getSelf } from "./auth-service";
 
 const streamWithUser = Prisma.validator<Prisma.StreamDefaultArgs>()({
-  include: { user: true },
+  select: {
+    id: true,
+    user: true,
+    isLive: true,
+    thumbnailUrl: true,
+    name: true,
+  },
 });
 export type StreamWithUser = Prisma.StreamGetPayload<typeof streamWithUser>;
 
@@ -36,12 +42,24 @@ export const getAllStreams = async () => {
             },
           },
         },
+        select: {
+          id: true,
+          user: true,
+          isLive: true,
+          thumbnailUrl: true,
+          name: true,
+        },
         orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
-        include: { user: true },
       })
     : await db.stream.findMany({
+        select: {
+          id: true,
+          user: true,
+          isLive: true,
+          thumbnailUrl: true,
+          name: true,
+        },
         orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
-        include: { user: true },
       });
 
   return streams;
