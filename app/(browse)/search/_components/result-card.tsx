@@ -2,9 +2,10 @@ import Link from "next/link";
 
 import { formatDistanceToNow } from "date-fns";
 
-import { Thumbnail } from "@/components/thumbnail";
+import { Thumbnail, ThumbnailSkeleton } from "@/components/thumbnail";
 import { StreamWithUser } from "@/lib/stream-service";
 import { VerifiedMark } from "@/components/verified-mark";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type ResultCardProps = {
   stream: StreamWithUser;
@@ -41,5 +42,21 @@ export const ResultCard = ({ stream }: ResultCardProps) => {
         </div>
       </div>
     </Link>
+  );
+};
+
+export const ResultCardSkeleton = () => {
+  return (
+    <div className="ga-x-4 flex w-full">
+      <div className="w-[16rem relative h-[9rem]">
+        <ThumbnailSkeleton />
+      </div>
+
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-32" />
+        <Skeleton className="h-3 w-24" />
+        <Skeleton className="h-3 w-12" />
+      </div>
+    </div>
   );
 };

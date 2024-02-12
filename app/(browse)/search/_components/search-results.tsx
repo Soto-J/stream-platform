@@ -1,12 +1,10 @@
 import { getSearch } from "@/lib/search-service";
 
-import { ResultCard } from "./result-card";
+import { ResultCard, ResultCardSkeleton } from "./result-card";
 
 import { Skeleton } from "@/components/ui/skeleton";
 
-type ResultsProps = {
-  term: string;
-};
+type ResultsProps = { term: string };
 
 export const SearchResults = async ({ term }: ResultsProps) => {
   const streams = await getSearch(term);
@@ -32,10 +30,16 @@ export const SearchResults = async ({ term }: ResultsProps) => {
   );
 };
 
-export const ResultsSkeleton = () => {
+export const SearchResultsSkeleton = () => {
   return (
     <div>
-      <Skeleton />
+      <Skeleton className="mb-4 h-8 w-[290px]" />
+
+      <div className="flex flex-col gap-y-4">
+        {[...Array(4)].map((_, i) => (
+          <ResultCardSkeleton key={i} />
+        ))}
+      </div>
     </div>
   );
 };
