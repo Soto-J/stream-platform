@@ -44,7 +44,7 @@ export const ConnectModal = () => {
           toast.success("Connection generated");
           closeRef.current?.click();
         })
-        .catch(() => toast.error("Failed to generate connection"));
+        .catch((error) => toast.error(error.message));
     });
   };
 

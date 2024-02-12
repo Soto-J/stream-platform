@@ -24,11 +24,9 @@ const roomService = new RoomServiceClient(
 const ingressClient = new IngressClient(process.env.LIVEKIT_API_URL!);
 
 export const resetIngresses = async (hostIdentity: string) => {
-  console.log({ hostIdentity });
   const ingresses = await ingressClient.listIngress({
     roomName: hostIdentity,
   });
-
   const rooms = await roomService.listRooms([hostIdentity]);
 
   for (const room of rooms) {
@@ -73,7 +71,7 @@ export const createIngress = async (ingressType: IngressInput) => {
   }
 
   const ingress = await ingressClient.createIngress(ingressType, options);
-  
+
   if (!ingress || !ingress.url || !ingress.streamKey) {
     throw new Error("Failed to create ingress");
   }

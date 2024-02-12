@@ -15,7 +15,7 @@ export default async function KeyPage() {
   }
 
   const stream = await getStreamByUserId(self.id);
-
+  
   if (!stream) {
     throw new Error("Stream not found");
   }

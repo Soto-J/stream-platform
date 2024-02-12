@@ -35,8 +35,6 @@ export default async function UserPage({ params }: UserPageProps) {
           isFollowing={isFollowing}
         />
       </div>
-
-      <Actions userId={user.id} isFollowing={isFollowing} />
     </div>
   );
 }
