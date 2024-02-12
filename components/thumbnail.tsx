@@ -41,7 +41,7 @@ export const Thumbnail = ({
         </div>
       )}
 
-      {isLive && (
+      {isLive && src && (
         <div className="absolute left-2 top-2 transition-transform group-hover:translate-x-2 group-hover:translate-y-2">
           <LiveBadge />
         </div>

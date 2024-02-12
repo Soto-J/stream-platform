@@ -4,7 +4,6 @@ import { Prisma } from "@prisma/client";
 const userWithStream = Prisma.validator<Prisma.UserDefaultArgs>()({
   select: {
     id: true,
-    externalUserId: true,
     username: true,
     bio: true,
     imageUrl: true,
@@ -44,7 +43,6 @@ export const getUserByUsername = async (username: string) => {
     where: { username },
     select: {
       id: true,
-      externalUserId: true,
       username: true,
       bio: true,
       imageUrl: true,
