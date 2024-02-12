@@ -67,19 +67,21 @@ export const ChatForm = ({
       onSubmit={handleSubmit}
       className="flex flex-col items-center gap-y-4 p-3"
     >
-      <ChatInfo isDelayed={isDelayed} isFollowersOnly={isFollowersOnly} />
+      <div className="w-full">
+        <ChatInfo isDelayed={isDelayed} isFollowersOnly={isFollowersOnly} />
 
-      <Input
-        type="text"
-        onChange={(e) => onChange(e.target.value)}
-        value={value}
-        disabled={isDisabled}
-        placeholder="Send a message"
-        className={cn(
-          "border-white/10",
-          isFollowersOnly && "rounded-t-none border-t-0",
-        )}
-      />
+        <Input
+          type="text"
+          onChange={(e) => onChange(e.target.value)}
+          value={value}
+          disabled={isDisabled}
+          placeholder="Send a message"
+          className={cn(
+            "border-white/10",
+            (isFollowersOnly || isDelayed) && "rounded-t-none border-t-0",
+          )}
+        />
+      </div>
 
       <Button
         type="submit"
