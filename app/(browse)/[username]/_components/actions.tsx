@@ -42,7 +42,7 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
     startTransition(() => {
       onBlockUser(userId)
         .then((data) => {
-          toast.success(`You have blocked ${data.blocked.username}`);
+          toast.success(`You have blocked ${data?.blocked.username}`);
         })
         .catch((error) => toast.error(error.message));
     });
@@ -61,7 +61,6 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
   const followLabel = isFollowing ? "Unfollow" : "Follow";
   const onClick = isFollowing ? handleUnfollow : handleFollow;
 
-  // const blockLabel = isBlock ? "Unblock" : "Block";
   const onBlock = isFollowing ? handleUnblock : handleBlock;
   return (
     <>
