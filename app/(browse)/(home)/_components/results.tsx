@@ -4,7 +4,7 @@ import { ResultCard, ResultCardSkeleton } from "./result-card";
 
 import { Skeleton } from "@/components/ui/skeleton";
 
-export const Result = async () => {
+export const Results = async () => {
   const data = await getAllStreams();
 
   return (
@@ -26,7 +26,7 @@ export const Result = async () => {
   );
 };
 
-export const ResultSkeleton = () => {
+export const ResultsSkeleton = () => {
   return (
     <div>
       <Skeleton className="mb-4 h-8 w-[290px]" />
