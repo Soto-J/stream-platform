@@ -11,7 +11,7 @@ type UserPageProps = {
   params: { username: string };
 };
 
-const UserPage = async ({ params }: UserPageProps) => {
+export default async function UserPage({ params }: UserPageProps) {
   const user = await getUserByUsername(params.username);
 
   if (!user || !user.stream) {
@@ -39,6 +39,4 @@ const UserPage = async ({ params }: UserPageProps) => {
       <Actions userId={user.id} isFollowing={isFollowing} />
     </div>
   );
-};
-
-export default UserPage;
+}
