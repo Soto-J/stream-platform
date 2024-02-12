@@ -1,10 +1,12 @@
 import { getAllStreams } from "@/lib/stream-service";
 
-import { ResultCard } from "./result-card";
+import { ResultCard, ResultCardSkeleton } from "./result-card";
+
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const Result = async () => {
   const data = await getAllStreams();
-  
+
   return (
     <div className="">
       <h2 className="mb-4 text-lg font-semibold">
@@ -25,5 +27,13 @@ export const Result = async () => {
 };
 
 export const ResultSkeleton = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Skeleton className="mb-4 h-8 w-[290px]" />
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        {[...Array(4).map((_, i) => <ResultCardSkeleton key={i} />)]}
+      </div>
+    </div>
+  );
 };
