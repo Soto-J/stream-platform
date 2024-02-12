@@ -33,7 +33,14 @@ export const getSearch = async (term: string) => {
             },
           ],
         },
-        include: { user: true },
+        select: {
+          id: true,
+          user: true,
+          isLive: true,
+          thumbnailUrl: true,
+          name: true,
+          updatedAt: true,
+        },
         orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
       })
     : await db.stream.findMany({
@@ -49,7 +56,14 @@ export const getSearch = async (term: string) => {
             },
           ],
         },
-        include: { user: true },
+        select: {
+          id: true,
+          user: true,
+          isLive: true,
+          thumbnailUrl: true,
+          name: true,
+          updatedAt: true,
+        },
         orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
       });
 
