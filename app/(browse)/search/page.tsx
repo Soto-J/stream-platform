@@ -1,22 +1,22 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 
-import { Results, ResultsSkeleton } from "./_components/results";
+import { SearchResults, ResultsSkeleton } from "./_components/search-results";
 
 type SearchPageProps = {
   searchParams: { term?: string };
 };
 
-export default function SearchPAge({ searchParams }: SearchPageProps) {
+export default function SearchPage({ searchParams }: SearchPageProps) {
   if (!searchParams.term) {
     redirect("/");
   }
 
   return (
     <div className="mx-auto h-full max-w-screen-2xl p-8">
-      SearchPAge
+      Search Page
       <Suspense fallback={<ResultsSkeleton />}>
-        <Results term={searchParams?.term} />
+        <SearchResults term={searchParams?.term} />
       </Suspense>
     </div>
   );

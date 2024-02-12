@@ -10,6 +10,7 @@ const streamWithUser = Prisma.validator<Prisma.StreamDefaultArgs>()({
     isLive: true,
     thumbnailUrl: true,
     name: true,
+    updatedAt: true,
   },
 });
 export type StreamWithUser = Prisma.StreamGetPayload<typeof streamWithUser>;
@@ -48,6 +49,7 @@ export const getAllStreams = async () => {
           isLive: true,
           thumbnailUrl: true,
           name: true,
+          updatedAt: true,
         },
         orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
       })
@@ -58,6 +60,7 @@ export const getAllStreams = async () => {
           isLive: true,
           thumbnailUrl: true,
           name: true,
+          updatedAt: true,
         },
         orderBy: [{ isLive: "desc" }, { updatedAt: "desc" }],
       });
