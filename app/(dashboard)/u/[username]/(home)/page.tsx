@@ -11,7 +11,6 @@ type CreatorPageProps = {
 export default async function CreatorPage({ params }: CreatorPageProps) {
   const clerkUser = await currentUser();
   const user = await getUserByUsername(params.username);
-  console.log(user?._count.followedBy);
 
   if (!user || clerkUser?.id !== user?.externalUserId || !user.stream) {
     throw new Error("Unauthorized");

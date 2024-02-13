@@ -1,25 +1,26 @@
-import { DataTable } from "./_components/data-table";
-import { type Payment, columns } from "./_components/columns";
+import { format } from "date-fns";
 
-async function getData(): Promise<Payment[]> {
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-  ];
-}
+import { getAllBlockedUsers } from "@/lib/block-service";
+
+import { DataTable } from "./_components/data-table";
+import { columns } from "./_components/columns";
 
 export default async function CommunityPage() {
-  const data = await getData();
+  const blockedUsers = await getAllBlockedUsers();
+
+  const formattedData = blockedUsers.map((block) => ({
+    ...block,
+    userId: block.blocked.id,
+    imageUrl: block.blocked.imageUrl,
+    username: block.blocked.username,
+    createdAt: format(new Date(block.blocked.createdAt), "MM/dd/yyyy"),
+  }));
 
   return (
     <div className="p-6">
       <h1 className="mb-4 text-2xl font-bold">Community settings</h1>
 
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={formattedData} />
     </div>
   );
 }

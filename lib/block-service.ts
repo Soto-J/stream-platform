@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { getSelf } from "@/lib/auth-service";
 
 const blockedUser = Prisma.validator<Prisma.BlockDefaultArgs>()({
-  include: { blocked: true, blocker: true },
+  include: { blocked: true },
 });
 export type BlockedUser = Prisma.BlockGetPayload<typeof blockedUser>;
 
@@ -81,7 +81,6 @@ export const blockUser = async (id: string) => {
       blockedId: otherUser.id,
     },
     include: {
-      blocker: true,
       blocked: true,
     },
   });
@@ -128,8 +127,20 @@ export const unBlockUser = async (id: string) => {
       },
     },
     include: {
-      blocker: true,
       blocked: true,
     },
+  });
+};
+
+export const getAllBlockedUsers = async () => {
+  const self = await getSelf();
+
+  if (!self) {
+    throw new Error("Unathorized");
+  }
+
+  return await db.block.findMany({
+    where: { blockerId: self.id },
+    include: { blocked: true },
   });
 };
