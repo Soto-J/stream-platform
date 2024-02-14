@@ -19,12 +19,14 @@ type StreamPlayerProps = {
   user: UserWithStream;
   stream: CustomStream;
   isFollowing: boolean;
+  isBlocking: boolean;
 };
 
 export const StreamPlayer = ({
   user,
   stream,
   isFollowing,
+  isBlocking,
 }: StreamPlayerProps) => {
   const { isCollapsed } = useChatSidebar((state) => state);
 
@@ -58,6 +60,7 @@ export const StreamPlayer = ({
             viewerIdentity={identity}
             imageUrl={user.imageUrl}
             isFollowing={isFollowing}
+            isBlocking={isBlocking}
             streamName={stream.name}
           />
           <InfoCard

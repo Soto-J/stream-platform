@@ -18,6 +18,7 @@ type HeaderProps = {
   viewerIdentity: string;
   imageUrl: string;
   isFollowing: boolean;
+  isBlocking: boolean;
   streamName: string;
 };
 
@@ -27,6 +28,7 @@ export const Header = ({
   viewerIdentity,
   imageUrl,
   isFollowing,
+  isBlocking,
   streamName,
 }: HeaderProps) => {
   const participants = useParticipants();
@@ -75,6 +77,7 @@ export const Header = ({
 
       <Actions
         isFollowing={isFollowing}
+        isBlocking={isBlocking}
         isHost={isHost}
         hostIdentity={hostIdentity}
       />
