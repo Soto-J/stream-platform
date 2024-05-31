@@ -18,7 +18,7 @@ type HeaderProps = {
   viewerIdentity: string;
   imageUrl: string;
   isFollowing: boolean;
-  isBlocking: boolean;
+  isBlocking?: boolean;
   streamName: string;
 };
 

@@ -27,7 +27,7 @@ import { onBlockUser, onUnBlockUser } from "@/actions/block";
 
 type ActionsProps = {
   isFollowing: boolean;
-  isBlocking: boolean;
+  isBlocking?: boolean;
   isHost: boolean;
   hostIdentity: string;
 };

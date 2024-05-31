@@ -19,7 +19,7 @@ type StreamPlayerProps = {
   user: UserWithStream;
   stream: CustomStream;
   isFollowing: boolean;
-  isBlocking: boolean;
+  isBlocking?: boolean;
 };
 
 export const StreamPlayer = ({
